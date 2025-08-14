@@ -6,7 +6,9 @@ FROM python:3.12-slim
 #  ENVIRONMENT VARIABLES CONFIGURATION
 # ---------------------------------------------------------
 
-# Set the Airflow home directory path inside the container
+# Set Airflow's home directory inside the container
+# Stores DAGs, logs, plugins, and airflow.cfg here
+# /opt is a standard Linux path for optional application software
 ENV AIRFLOW_HOME=/opt/airflow
 
 # Specify the Apache Airflow version to install
@@ -15,8 +17,8 @@ ENV AIRFLOW_VERSION=2.10.3
 # Specify the Python version (used in Airflow constraints URL)
 ENV PYTHON_VERSION=3.12
 
-# Official constraints file URL for Apache Airflow
-# This ensures pip installs only compatible versions of dependencies
+# URL for Airflow's official constraints file (specific to version & Python)
+# Ensures pip installs dependency versions tested to work with this Airflow release
 ENV CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
 
 # ---------------------------------------------------------
